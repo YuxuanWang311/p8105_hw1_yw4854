@@ -1,0 +1,53 @@
+---
+title: "p8105_hw1_yw4854"
+author: "Yuxuan Wang"
+date: "2026-09-26"
+output: github_document
+---
+
+```{r, message=FALSE}
+library(tidyverse)
+data("penguins", package = "palmerpenguins")
+```
+
+# Problem 1
+
+The dataset contains data on adult penguins across `r length(levels(penguins$species))` species in the Palmer Archipelago, Antarctica.
+The dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+Important variables：
+
+- `Species`: Penguin species (`r levels(penguins$species)`)
+
+- `Island`: Penguin Habitat (`r levels(penguins$island)`)
+
+- `bill_length_mm`: bill length (millimeters) 
+
+- `bill_depth_mm`: bill depth (millimeters)
+
+- `flipper_length_mm`: flipper length (millimeters)
+
+- `body_mass_g`: body mass (grams)
+
+- `sex`: penguin sex (`r levels(penguins$sex)`)
+
+- `year`: study year
+
+the mean flipper length:
+`r mean(penguins$flipper_length_mm, na.rm = TRUE)`
+
+### scatterplot:
+
+```{r, warning=FALSE}
+penguin_plot <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  labs(
+  title = "Flipper length vs Bill length",
+  x = "Bill length (mm)",
+  y = "Flipper length (mm)",
+  color = "species"
+)
+
+penguin_plot
+
+ggsave("scatter_plot.png", penguin_plot)
