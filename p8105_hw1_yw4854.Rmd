@@ -15,11 +15,11 @@ data("penguins", package = "palmerpenguins")
 The dataset contains data on adult penguins across `r length(levels(penguins$species))` species in the Palmer Archipelago, Antarctica.
 The dataset has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
 
-Important variables：
+Important variables:
 
-- `Species`: Penguin species (`r levels(penguins$species)`)
+- `species`: Penguin species (`r levels(penguins$species)`)
 
-- `Island`: Penguin Habitat (`r levels(penguins$island)`)
+- `island`: Penguin Habitat (`r levels(penguins$island)`)
 
 - `bill_length_mm`: bill length (millimeters) 
 
@@ -55,7 +55,7 @@ ggsave("scatter_plot.png", penguin_plot)
 
 # Problem 2
 ### data frame
-```{r}
+```{r, warning=FALSE}
 set.seed(1234)
 
 hw1_df <- tibble(norm_samp = rnorm(10), norm_greater_0 = norm_samp > 0, char_vec = c("Westie", "Golden Retriever", "Labrador Retriever", "Beagle", "Poodle", "Husky", "Boxer", "Samoyed", "French Bulldog", "Yorkshire Terrier"), factor_vec = factor(rep(c("friendly", "energetic", "calm"), length.out = 10))
@@ -65,7 +65,7 @@ hw1_df
 ```
 ### mean of each variable
 
-```{r}
+```{r, warning=FALSE}
 mean(pull(hw1_df, norm_samp))
 
 mean(pull(hw1_df, norm_greater_0))
