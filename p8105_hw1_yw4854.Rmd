@@ -51,3 +51,43 @@ penguin_plot <- ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, 
 penguin_plot
 
 ggsave("scatter_plot.png", penguin_plot)
+```
+
+# Problem 2
+### data frame
+```{r}
+set.seed(1234)
+
+hw1_df <- tibble(norm_samp = rnorm(10), norm_greater_0 = norm_samp > 0, char_vec = c("Westie", "Golden Retriever", "Labrador Retriever", "Beagle", "Poodle", "Husky", "Boxer", "Samoyed", "French Bulldog", "Yorkshire Terrier"), factor_vec = factor(rep(c("friendly", "energetic", "calm"), length.out = 10))
+)
+
+hw1_df
+```
+### mean of each variable
+
+```{r}
+mean(pull(hw1_df, norm_samp))
+
+mean(pull(hw1_df, norm_greater_0))
+
+mean(pull(hw1_df, char_vec))
+
+mean(pull(hw1_df, factor_vec))
+```
+
+- mean of norm_samp works.Because it is numeric.
+- mean of norm_greater_0 works. Because it is logical.
+- mean of char_vec doesn't work. Because is not numeric or logical.
+- mean of factor_vec doesn't work. Because is not numeric or logical.
+
+### convert variables from one type to another
+```{r, eval=FALSE}
+as.numeric(pull(hw1_df, norm_greater_0))
+as.numeric(pull(hw1_df, char_vec))
+as.numeric(pull(hw1_df, factor_vec))
+```
+- norm_greater_0 convert to 1 and 0. This can explain why mean() succeeded. Because 0 and 1 are number. For example 0.4 means there are 4 variable greater than 0.
+
+- char_vec convert to NA, because words cannot be parsed into numbers.
+
+- factor_vec convert to 1,2 and 3. Because 1,2 and 3 are categorical labels, they have no meaning in terms of the mean.
